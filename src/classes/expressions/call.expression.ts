@@ -9,7 +9,8 @@ export class CallExpression extends Expression {
   }
 
   public override accept<R>(visitor: Visitor<R>, context?: any): R {
-    return visitor.visitCallExpr(this, context);
+    //return visitor.visitCallExpr(this, context);
+    throw new Error("Method not implemented.");
   }
 
   public override toLiteral(): string {

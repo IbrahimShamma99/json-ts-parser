@@ -9,7 +9,8 @@ export class LimitExpression extends Expression {
     super();
   }
   public override accept<R>(visitor: Visitor<R>, context: any): R {
-    return visitor.visitLimitExpr(this, context);
+    //return visitor.visitLimitExpr(this, context);
+    throw new Error("Method not implemented.");
   }
   public override toLiteral<R>(): string {
     throw new Error("Method not implemented.");

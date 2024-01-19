@@ -20,7 +20,8 @@ export class OrderByColumn extends Expression {
   }
 
   public override accept<R>(visitor: Visitor<R>): R {
-    return visitor.visitOrderByColumn(this);
+    //return visitor.visitOrderByColumn(this);
+    throw new Error("Method not implemented.");
   }
 
   public override toLiteral<R>(): string {

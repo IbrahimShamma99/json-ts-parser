@@ -6,7 +6,7 @@ import { Statement } from "../classes/statements/statement";
 import { Visitor } from "./visitor";
 
 export class JsVisitor extends Visitor<string> {
-  public execute(stmts: Statement[]) {
+  public execute(stmts: Statement[]): string {
     const select = stmts.find((item) => item instanceof SelectStatement);
     if (!select) {
       throw new Error();

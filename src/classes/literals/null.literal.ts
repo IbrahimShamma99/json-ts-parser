@@ -1,11 +1,12 @@
 import { Visitor } from "../../interpreter/visitor";
-import { Varient } from "../variant";
+import { Variant } from "../variant";
 import { Literal } from "./literal";
 
 export class NullLiteral extends Literal {
-  public override varient: Varient = "string";
+  public override variant: Variant = "string";
   public override accept<R>(visitor: Visitor<R>): R {
-    return visitor.visitNullLiteralExpr(this);
+    //    return visitor.visitNullLiteralExpr(this);
+    throw new Error("Method not implemented.");
   }
   public override toLiteral(): string {
     return "NULL";

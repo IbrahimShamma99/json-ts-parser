@@ -43,7 +43,8 @@ export class BinaryExpression extends Expression {
   }
 
   public accept<R>(visitor: Visitor<R>, row: Record<string, any>): R {
-    return visitor.visitBinaryExpr(this, row);
+    //    return visitor.visitBinaryExpr(this, row);
+    throw new Error("Method not implemented.");
   }
 
   public toLiteral(): string {

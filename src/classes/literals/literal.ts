@@ -1,8 +1,8 @@
 import { Expression } from "../expressions/expression";
-import { Varient } from "../variant";
+import { Variant } from "../variant";
 
 export abstract class Literal extends Expression {
-  public abstract override varient: Varient;
+  public abstract override variant: Variant;
 
   constructor(public value: string) {
     super();

@@ -1,4 +1,4 @@
-import { Scanner } from "../../scanner";
+import { Scanner } from "../../src/scanner";
 
 describe("Scanner Tests", () => {
   it("should scan a simple select statement", () => {
@@ -12,6 +12,6 @@ describe("Scanner Tests", () => {
     const scanner = new Scanner(source);
     scanner.scan();
 
-    expect(scanner.tokens).toMatchSnapshot();
+    expect(scanner.tokens).toMatchSnapshot("tokens");
   });
 });
