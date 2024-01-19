@@ -5,3 +5,18 @@
 ### Props to [Crafting Interpreters](https://craftinginterpreters.com/) for the knowledge and inspiration
 
 #### Example
+
+```ts
+import { Generator } from "sql-js-data-mapper";
+
+const generator = new Generator([
+  { id: "id1", user_name: "user1" },
+  { id: "id2", user_name: "user2" },
+]);
+
+generator.execute(`
+  SELECT id, user_name
+  FROM users
+  WHERE id = 'id1'
+`);
+```
