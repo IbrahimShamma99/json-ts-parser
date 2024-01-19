@@ -1,8 +1,10 @@
 import { BinaryExpression } from "../classes/expressions/binary.expression";
 import { LimitExpression } from "../classes/expressions/limit.expression";
 import { Identifier } from "../classes/identifiers/identifier";
+import { StringLiteral } from "../classes/literals/string.literal";
 import { SelectStatement } from "../classes/statements/select.statement";
 import { Statement } from "../classes/statements/statement";
+import { TokenType } from "../tokens";
 import { Visitor } from "./visitor";
 
 export class JsVisitor extends Visitor<string> {
@@ -12,6 +14,10 @@ export class JsVisitor extends Visitor<string> {
       throw new Error();
     }
     return select.accept(this);
+  }
+
+  public visitStringLiteralExpr(expr: StringLiteral): string {
+    return expr.value;
   }
 
   public visitIdentifier(expr: Identifier): string {
@@ -25,11 +31,21 @@ export class JsVisitor extends Visitor<string> {
         )}}))`;
 
     const where = stmt.where
-      ? `.filter((item) => ${stmt.where.accept(this)})`
+      ? `.filter((item) => item.${stmt.where.accept(this)})`
       : "";
 
     const limit = stmt.limit ? `.slice(0, ${stmt.limit.accept(this)})` : "";
 
-    return `${select}${where}${limit}`;
+    return `${where}${select}${limit}`;
+  }
+
+  public visitBinaryExpr(expr: BinaryExpression, context: any): string {
+    switch (expr.operator.type) {
+      case TokenType.EQUAL:
+        return `${expr.left.accept(this)} === ${expr.right.accept(this)}`;
+        break;
+      default:
+        throw new Error("Invalid operator");
+    }
   }
 }

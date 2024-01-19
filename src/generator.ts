@@ -5,6 +5,8 @@ import { Token, TokenType } from "./tokens";
 import { Statement } from "./classes/statements/statement";
 
 export class Generator {
+  public source!: string;
+
   constructor(private data: Record<any, any>) {}
 
   run(jsCode: string) {
@@ -28,6 +30,7 @@ export class Generator {
   }
 
   generateCode(source: string): string {
+    this.source = source;
     const jsCode = `function run() { return ${JSON.stringify(
       this.data
     )}${source} } run()`;

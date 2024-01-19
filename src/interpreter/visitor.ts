@@ -21,10 +21,10 @@ export abstract class Visitor<R> {
   // public abstract visitGroupingExpr(expr: GroupingExpression): R;
   // public abstract visitUnaryExpr(expr: UnaryExpression): R;
   // public abstract visitNumericLiteralExpr(expr: NumericLiteral): R;
-  // public abstract visitBinaryExpr(expr: BinaryExpression, context: any): R;
+  public abstract visitBinaryExpr(expr: BinaryExpression, context: any): R;
   // public abstract visitNullLiteralExpr(expr: NullLiteral): R;
   // public abstract visitBooleanLiteralExpr(expr: BooleanLiteral): R;
-  // public abstract visitStringLiteralExpr(expr: StringLiteral): R;
+  public abstract visitStringLiteralExpr(expr: StringLiteral): R;
   public abstract visitIdentifier(expr: Identifier): R;
   public abstract visitSelectStmt(stmt: SelectStatement, context?: any): R;
   // public abstract visitGroupByExpr(expr: GroupByExpression, context?: any): R;

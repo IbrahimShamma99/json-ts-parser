@@ -120,7 +120,7 @@ export class Scanner {
         this.addToken(this.match("=") ? TokenType.BANG_EQUAL : TokenType.BANG);
         break;
       case "=":
-        this.addToken(TokenType.EQUAL);
+        this.addToken(TokenType.EQUAL, "=");
         break;
       case "<":
         this.addToken(this.match("=") ? TokenType.LESS_EQUAL : TokenType.LESS);
@@ -130,10 +130,11 @@ export class Scanner {
           this.match("=") ? TokenType.GREATER_EQUAL : TokenType.GREATER
         );
         break;
-
+      case "'":
+        this.string();
         break;
+
       default: {
-        console.log("default", c);
         if (isDigit(c)) {
           this.digit();
         } else if (isEnglishChar(c)) {
@@ -141,6 +142,20 @@ export class Scanner {
         }
       }
     }
+  };
+
+  private string = () => {
+    this.advance();
+    while (this.peek() !== "'" && !this.isAtEnd) {
+      this.advance();
+    }
+    if (this.isAtEnd) {
+      throw new Error("Unterminated string.");
+    }
+
+    this.advance();
+
+    this.addToken(TokenType.STRING);
   };
 
   private digit = () => {
