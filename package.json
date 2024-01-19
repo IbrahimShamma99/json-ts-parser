@@ -1,0 +1,29 @@
+{
+    "name": "sql-js-data-mapper",
+    "version": "0.0.0",
+    "description": "Replace Brackets in string with values",
+    "main": "dist/index.js",
+    "types": "dist/index.d.ts",
+    "scripts": {
+        "prepublish": "tsc --project ./"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git@github.com/IbrahimShamma99/sql-js-tiny-compiler.git"
+    },
+    "keywords": [
+        "ts",
+        "sql",
+        "compilers"
+    ],
+    "author": "Ibra",
+    "license": "MIT",
+    "devDependencies": {
+        "ts-mocha": "^10.0.0",
+        "typescript": "^4.8.4"
+    },
+    "dependencies": {
+        "@rollup/plugin-babel": "^6.0.2",
+        "tape": "^5.6.3"
+    }
+}
