@@ -34,7 +34,7 @@ export class Parser {
           const selectStatement = this.selectStatement();
           this.log(selectStatement);
           tree.push(selectStatement);
-          this.consume(TokenType.SEMICOLON, "Expect ';' after expression.");
+          //this.consume(TokenType.SEMICOLON, "Expect ';' after expression.");
           break;
         default:
           throw new Error(`Unexpected token ${token.type}`);

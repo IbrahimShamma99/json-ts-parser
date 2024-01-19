@@ -7,21 +7,8 @@ import { Statement } from "./classes/statements/statement";
 export class Generator {
   constructor(private data: Record<any, any>) {}
 
-  run(sql: string) {
-    const scanner = new Scanner(sql);
-    scanner.scan();
-
-    const parser = new Parser(scanner.tokens);
-
-    const tree = parser.parse();
-
-    const jsVisitor = new JsVisitor().execute(tree);
-
-    const jsCode = `function run() { return ${JSON.stringify(
-      this.data
-    )}${jsVisitor} } run()`;
-
-    return eval(jsCode);
+  run(jsCode: string) {
+    return eval(this.generateCode(jsCode));
   }
 
   scan(sql: string): Token<TokenType>[] {
@@ -48,8 +35,13 @@ export class Generator {
     return jsCode;
   }
 
-  execute(source: string): any {
-    const jsCode = this.generateCode(source);
-    return eval(jsCode);
+  execute(source: string): Record<any, any> {
+    const tokens = this.scan(source);
+
+    const ast = this.parse(tokens);
+
+    const jsCode = this.visit(ast);
+
+    return this.run(jsCode);
   }
 }
