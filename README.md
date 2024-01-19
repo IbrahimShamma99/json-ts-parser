@@ -15,8 +15,10 @@ const generator = new Generator([
 ]);
 
 generator.execute(`
-  SELECT id, user_name
+  SELECT id, user_name as username
   FROM users
   WHERE id = 'id1'
 `);
+
+// returns [{ id: "id1", username: "user1" }]
 ```
