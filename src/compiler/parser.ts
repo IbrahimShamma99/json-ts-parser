@@ -105,6 +105,7 @@ export class Parser {
 
     if (this.match(TokenType.ORDER)) {
       this.consume(TokenType.BY, "Expect 'BY' after 'GROUP'")
+      // TODO add support for ORDER BY Numerics and Aggregates
       statement.order = factory.createOrderByExpression([])
       do {
         const columnName = this.orderByCol()
