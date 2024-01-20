@@ -9,7 +9,7 @@ import { BooleanLiteral } from "./classes/literals/boolean.literal";
 import { NullLiteral } from "./classes/literals/null.literal";
 import { StringLiteral } from "./classes/literals/string.literal";
 import { Statement } from "./classes/statements/statement";
-import { Factory, getKeyByValue, keywords } from "./factory";
+import { Factory, getKeyByValue, keywords } from "./classes/factory/factory";
 import { Token } from "./tokens";
 import { TokenType } from "./tokens/tokentype";
 

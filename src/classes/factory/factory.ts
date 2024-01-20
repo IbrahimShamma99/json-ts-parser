@@ -1,12 +1,9 @@
-import { Expression } from "./classes/expressions/expression";
-import {
-  UnaryExpression,
-  UnaryToken,
-} from "./classes/expressions/unary.expression";
-import { Identifier } from "./classes/identifiers/identifier";
-import { NumericLiteral } from "./classes/literals/numeric.literal";
-import { SelectStatement } from "./classes/statements/select.statement";
-import { TokenType, Token } from "./tokens";
+import { Expression } from "../expressions/expression";
+import { UnaryExpression, UnaryToken } from "../expressions/unary.expression";
+import { Identifier } from "../identifiers/identifier";
+import { NumericLiteral } from "../literals/numeric.literal";
+import { SelectStatement } from "../statements/select.statement";
+import { TokenType, Token } from "../../tokens";
 
 export class Factory {
   public createSelectStatement(
