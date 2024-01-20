@@ -1,4 +1,4 @@
-import { Visitor } from "../../interpreter/visitor";
+import { Visitor } from "../visitors/visitor";
 import { Expression } from "./expression";
 import { Variant } from "../variant";
 

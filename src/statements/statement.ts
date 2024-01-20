@@ -1,5 +1,5 @@
 import { Variant } from "../variant";
-import { Visitor } from "../../interpreter/visitor";
+import { Visitor } from "../visitors/visitor";
 
 export abstract class Statement {
   public type = "statement";

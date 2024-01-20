@@ -2,7 +2,7 @@ import { Expression } from "../expressions/expression";
 import { GroupByExpression } from "../expressions/group_expression";
 import { Identifier } from "../identifiers/identifier";
 import { Variant } from "../variant";
-import { Visitor } from "../../interpreter/visitor";
+import { Visitor } from "../visitors/visitor";
 import { Statement } from "./statement";
 
 export class SelectStatement extends Statement {

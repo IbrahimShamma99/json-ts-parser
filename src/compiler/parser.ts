@@ -1,17 +1,17 @@
 import {
   BinaryExpression,
   BinaryToken,
-} from "./classes/expressions/binary.expression";
-import { CallExpression } from "./classes/expressions/call.expression";
-import { Expression } from "./classes/expressions/expression";
-import { GroupingExpression } from "./classes/expressions/grouping.expression";
-import { BooleanLiteral } from "./classes/literals/boolean.literal";
-import { NullLiteral } from "./classes/literals/null.literal";
-import { StringLiteral } from "./classes/literals/string.literal";
-import { Statement } from "./classes/statements/statement";
-import { Factory, getKeyByValue, keywords } from "./classes/factory/factory";
-import { Token } from "./tokens";
-import { TokenType } from "./tokens/tokentype";
+} from "../expressions/binary.expression";
+import { CallExpression } from "../expressions/call.expression";
+import { Expression } from "../expressions/expression";
+import { GroupingExpression } from "../expressions/grouping.expression";
+import { BooleanLiteral } from "../literals/boolean.literal";
+import { NullLiteral } from "../literals/null.literal";
+import { StringLiteral } from "../literals/string.literal";
+import { Statement } from "../statements/statement";
+import { Factory, getKeyByValue, keywords } from "../factory/factory";
+import { Token } from "../tokens";
+import { TokenType } from "../tokens/tokentype";
 
 const factory = new Factory();
 

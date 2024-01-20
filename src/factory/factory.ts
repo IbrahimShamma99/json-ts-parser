@@ -3,7 +3,7 @@ import { UnaryExpression, UnaryToken } from "../expressions/unary.expression";
 import { Identifier } from "../identifiers/identifier";
 import { NumericLiteral } from "../literals/numeric.literal";
 import { SelectStatement } from "../statements/select.statement";
-import { TokenType, Token } from "../../tokens";
+import { TokenType, Token } from "../tokens";
 
 export class Factory {
   public createSelectStatement(

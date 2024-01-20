@@ -1,8 +1,8 @@
-import { JsVisitor } from "./interpreter/js.visitor";
+import { JsVisitor } from "../visitors/js.visitor";
 import { Scanner } from "./scanner";
 import { Parser } from "./parser";
-import { Token, TokenType } from "./tokens";
-import { Statement } from "./classes/statements/statement";
+import { Token, TokenType } from "../tokens";
+import { Statement } from "../statements/statement";
 
 export class Generator {
   public source!: string;

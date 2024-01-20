@@ -1,13 +1,14 @@
-import { Visitor } from "../../interpreter/visitor";
+import { Visitor } from "../visitors/visitor";
 import { Variant } from "../variant";
 import { Literal } from "./literal";
 
-export class StringLiteral extends Literal {
+export class NullLiteral extends Literal {
   public override variant: Variant = "string";
   public override accept<R>(visitor: Visitor<R>): R {
-    return visitor.visitStringLiteralExpr(this);
-  }
-  public override toLiteral<R>(): string {
+    //    return visitor.visitNullLiteralExpr(this);
     throw new Error("Method not implemented.");
+  }
+  public override toLiteral(): string {
+    return "NULL";
   }
 }

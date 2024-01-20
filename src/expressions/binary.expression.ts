@@ -1,5 +1,5 @@
-import { Visitor } from "../../interpreter/visitor";
-import { Token, TokenType } from "../../tokens";
+import { Visitor } from "../visitors/visitor";
+import { Token, TokenType } from "../tokens";
 import { Expression } from "./expression";
 import { Identifier } from "../identifiers/identifier";
 import { Literal } from "../literals/literal";
@@ -44,7 +44,6 @@ export class BinaryExpression extends Expression {
 
   public accept<R>(visitor: Visitor<R>, row: Record<string, any>): R {
     return visitor.visitBinaryExpr(this, row);
-    //throw new Error("Method not implemented.");
   }
 
   public toLiteral(): string {
@@ -53,10 +52,3 @@ export class BinaryExpression extends Expression {
     } ${this.right.toLiteral()}`;
   }
 }
-
-// import * as ts from "typescript";
-// ts.factory.createBinaryExpression(
-// 	ts.factory.createNumericLiteral("10"),
-// 	ts.factory.createToken(ts.SyntaxKind.GreaterThanEqualsToken),
-// 	ts.factory.createNumericLiteral("20")
-// );

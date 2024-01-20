@@ -1,4 +1,4 @@
-import { Visitor } from "../../interpreter/visitor";
+import { Visitor } from "../visitors/visitor";
 import { OrderByColumn } from "../identifiers/column.identifier";
 import { Expression } from "./expression";
 import { Variant } from "../variant";

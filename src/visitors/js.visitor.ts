@@ -1,9 +1,9 @@
-import { BinaryExpression } from "../classes/expressions/binary.expression";
-import { LimitExpression } from "../classes/expressions/limit.expression";
-import { Identifier } from "../classes/identifiers/identifier";
-import { StringLiteral } from "../classes/literals/string.literal";
-import { SelectStatement } from "../classes/statements/select.statement";
-import { Statement } from "../classes/statements/statement";
+import { BinaryExpression } from "../expressions/binary.expression";
+import { LimitExpression } from "../expressions/limit.expression";
+import { Identifier } from "../identifiers/identifier";
+import { StringLiteral } from "../literals/string.literal";
+import { SelectStatement } from "../statements/select.statement";
+import { Statement } from "../statements/statement";
 import { TokenType } from "../tokens";
 import { Visitor } from "./visitor";
 

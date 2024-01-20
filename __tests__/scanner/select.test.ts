@@ -1,4 +1,4 @@
-import { Scanner } from "../../src/scanner";
+import { Scanner } from "../../src/compiler/scanner";
 
 describe("Scanner Tests", () => {
   it("should scan a simple select statement", () => {

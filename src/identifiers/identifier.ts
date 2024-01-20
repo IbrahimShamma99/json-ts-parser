@@ -1,4 +1,4 @@
-import { Visitor } from "../../interpreter/visitor";
+import { Visitor } from "../visitors/visitor";
 import { Variant } from "../variant";
 
 export class Identifier {
