@@ -33,6 +33,6 @@ generator.execute(`
 - [x] Accept Order By in Select Statement
 - [ ] Add Support Aggregates Functions inside Select Statement
 - [ ] Make Order by accept Numeric Expressions and Aggregate Functions
-- [ ] Call Expressions in Select Statement
+- [ ] Support sub-queries in Select Statement
 - [ ] Ask for AST from Select Statement Parser
 - [ ] SQL Syntax Analyzer
