@@ -40,12 +40,29 @@ export class JsVisitor extends Visitor<string> {
   }
 
   public visitBinaryExpr(expr: BinaryExpression, context: any): string {
+    const keyOperatorMap = {
+      [TokenType.EQUAL]: "===",
+      [TokenType.BANG_EQUAL]: "!==",
+      [TokenType.LESS]: "<",
+      [TokenType.LESS_EQUAL]: "<=",
+      [TokenType.GREATER]: ">",
+      [TokenType.GREATER_EQUAL]: ">=",
+    };
+
     switch (expr.operator.type) {
       case TokenType.EQUAL:
-        return `${expr.left.accept(this)} === ${expr.right.accept(this)}`;
-        break;
+      case TokenType.BANG_EQUAL:
+      case TokenType.LESS:
+      case TokenType.LESS_EQUAL:
+      case TokenType.GREATER:
+      case TokenType.GREATER_EQUAL:
+        const operator = keyOperatorMap[expr.operator.type];
+        return `${expr.left.accept(this)} ${operator} ${expr.right.accept(
+          this
+        )}`;
+
       default:
-        throw new Error("Invalid operator");
+        throw new Error("Invalid operator or not implemented yet");
     }
   }
 }
