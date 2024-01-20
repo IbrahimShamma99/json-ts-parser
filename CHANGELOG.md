@@ -1,3 +1,7 @@
+## [0.0.6] - 2024-01-20
+
+- Accept Order By in Select Statement
+
 ## [0.0.5] - 2024-01-20
 
 - Accept Group By in Select Statement

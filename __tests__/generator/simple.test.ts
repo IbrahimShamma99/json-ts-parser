@@ -75,6 +75,25 @@ describe("Generators Tests", () => {
 
     generator.source;
 
+    expect(results).toEqual({
+      "1": [{ id: 1, username: "user1" }],
+      "2": [{ id: 2, username: "user2" }],
+    });
+  });
+
+  it("should generate from simple query with order by", () => {
+    const source =
+      "SELECT user_name as username , id FROM users order by user_name , id ;";
+
+    const generator = new Generator([
+      { id: 2, user_name: "user2" },
+      { id: 1, user_name: "user1" },
+    ]);
+
+    const results = generator.execute(source);
+
+    generator.source;
+
     expect(results).toEqual([
       { id: 1, username: "user1" },
       { id: 2, username: "user2" },

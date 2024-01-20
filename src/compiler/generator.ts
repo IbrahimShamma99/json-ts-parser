@@ -36,10 +36,10 @@ export class Generator {
           const colValueA = a[orderByConfig.column];
           const colValueB = b[orderByConfig.column];
 
-          if (orderByConfig.direction === 'asc') {
+          if (orderByConfig.direction === 'ASC') {
             if (colValueA > colValueB) return 1;
             if (colValueA < colValueB) return -1;
-          } else if (orderByConfig.direction === 'desc') {
+          } else if (orderByConfig.direction === 'DESC') {
             if (colValueB > colValueA) return 1;
             if (colValueB < colValueA) return -1;
           } else {

@@ -30,5 +30,5 @@ export abstract class Visitor<R> {
   public abstract visitGroupByExpr(expr: GroupByExpression, context?: any): R;
   // public abstract visitLimitExpr(expr: LimitExpression, context?: any): R;
   public abstract visitOrderByExpr(expr: OrderExpression, context?: any): R;
-  // public abstract visitOrderByColumn(expr: OrderByColumn): R;
+  public abstract visitOrderByColumn(expr: OrderByColumn): R;
 }

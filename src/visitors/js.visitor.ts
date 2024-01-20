@@ -2,6 +2,7 @@ import { BinaryExpression } from "../expressions/binary.expression";
 import { GroupByExpression } from "../expressions/group_expression";
 import { LimitExpression } from "../expressions/limit.expression";
 import { OrderExpression } from "../expressions/order_expression";
+import { OrderByColumn } from "../identifiers/column.identifier";
 import { Identifier } from "../identifiers/identifier";
 import { NumericLiteral } from "../literals/numeric.literal";
 import { StringLiteral } from "../literals/string.literal";
@@ -19,8 +20,18 @@ export class JsVisitor extends Visitor<string> {
     return select.accept(this);
   }
 
+  public visitOrderByColumn(expr: OrderByColumn): string {
+    return JSON.stringify({
+      column: expr.expression.accept(this),
+      direction: expr.direction,
+    });
+  }
+
   public visitOrderByExpr(expr: OrderExpression, context?: any): string {
-    return `.orderBy([])`;
+    const columns = expr.columns.map((node) => ({
+      ...JSON.parse(node.accept(this)),
+    }));
+    return JSON.stringify(columns);
   }
 
   public visitStringLiteralExpr(expr: StringLiteral): string {
@@ -43,9 +54,11 @@ export class JsVisitor extends Visitor<string> {
 
     const group = stmt.group ? `.groupBy([${stmt.group.accept(this)}])` : "";
 
+    const order = stmt.order ? `.orderBy(${stmt.order.accept(this)})` : "";
+
     const limit = stmt.limit ? `.slice(0, ${stmt.limit.accept(this)})` : "";
 
-    return `${where}${select}${limit}`;
+    return `${where}${select}${group}${order}${limit}`;
   }
 
   public visitBinaryExpr(expr: BinaryExpression, context: any): string {
@@ -76,7 +89,8 @@ export class JsVisitor extends Visitor<string> {
   }
 
   public visitGroupByExpr(expr: GroupByExpression, context?: any): string {
-    return expr.columns.map((node) => node.accept(this)).join(",");
+    //FIXME
+    return expr.columns.map((node) => `'${node.accept(this)}'`).join(",");
   }
 
   public visitNumericLiteralExpr(expr: NumericLiteral): string {
