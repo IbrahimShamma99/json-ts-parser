@@ -1,4 +1,4 @@
-import { Generator } from "../../";
+import { Generator } from "../../src";
 
 describe("Generators Tests", () => {
   it("should generate from simple query", () => {
@@ -44,5 +44,21 @@ describe("Generators Tests", () => {
     generator.source;
 
     expect(results).toEqual([{ username: "user1", id: "id1" }]);
+  });
+
+  it("should generate from simple query with where numeric", () => {
+    const source =
+      "SELECT user_name as username , id FROM users where id = 1 ;";
+
+    const generator = new Generator([
+      { id: 1, user_name: "user1" },
+      { id: 2, user_name: "user2" },
+    ]);
+
+    const results = generator.execute(source);
+
+    generator.source;
+
+    expect(results).toEqual([{ username: "user1", id: 1 }]);
   });
 });
