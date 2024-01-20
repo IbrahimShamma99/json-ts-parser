@@ -26,5 +26,8 @@ generator.execute(`
 ## TODO List
 
 - [x] Basic SQL Parser
+- [x] Accept Where in Select Statement
+- [x] Accept Group By in Select Statement
+- [x] Accept Order By in Select Statement
 - [ ] Ask for AST from Select Statement Parser
 - [ ] SQL Syntax Analyzer
