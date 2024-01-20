@@ -1,13 +1,13 @@
-import { Expression } from "../expressions/expression";
-import { GroupByExpression } from "../expressions/group_expression";
-import { LimitExpression } from "../expressions/limit.expression";
-import { OrderExpression } from "../expressions/order_expression";
-import { UnaryExpression, UnaryToken } from "../expressions/unary.expression";
-import { OrderByColumn } from "../identifiers/column.identifier";
-import { Identifier } from "../identifiers/identifier";
-import { NumericLiteral } from "../literals/numeric.literal";
-import { SelectStatement } from "../statements/select.statement";
-import { TokenType, Token } from "../tokens";
+import { Expression } from '../expressions/expression'
+import { GroupByExpression } from '../expressions/group_expression'
+import { LimitExpression } from '../expressions/limit.expression'
+import { OrderExpression } from '../expressions/order_expression'
+import { UnaryExpression, UnaryToken } from '../expressions/unary.expression'
+import { OrderByColumn } from '../identifiers/column.identifier'
+import { Identifier } from '../identifiers/identifier'
+import { NumericLiteral } from '../literals/numeric.literal'
+import { SelectStatement } from '../statements/select.statement'
+import { TokenType, Token } from '../tokens'
 
 export class Factory {
   public createSelectStatement(
@@ -17,52 +17,52 @@ export class Factory {
     order?: OrderExpression,
     limit?: LimitExpression
   ): SelectStatement {
-    const statement = new SelectStatement();
-    statement.columns = columns;
-    statement.from = from;
-    statement.where = where;
-    statement.order = order;
-    statement.limit = limit;
-    return statement;
+    const statement = new SelectStatement()
+    statement.columns = columns
+    statement.from = from
+    statement.where = where
+    statement.order = order
+    statement.limit = limit
+    return statement
   }
 
   public createGroupByExpression(
     columns: (Expression | Identifier)[]
   ): GroupByExpression {
-    const groupBy = new GroupByExpression();
-    groupBy.columns = columns;
+    const groupBy = new GroupByExpression()
+    groupBy.columns = columns
 
-    return groupBy;
+    return groupBy
   }
 
   public createOrderByExpression(columns: OrderByColumn[]): OrderExpression {
-    const order = new OrderExpression();
-    order.columns = columns;
-    return order;
+    const order = new OrderExpression()
+    order.columns = columns
+    return order
   }
 
   public createLimitExpression(limit: Expression): LimitExpression {
-    return new LimitExpression(limit);
+    return new LimitExpression(limit)
   }
 
   public createIdentifier(name: string, alias?: string): Identifier {
-    return new Identifier(name, alias);
+    return new Identifier(name, alias)
   }
 
   public createNumericLiteral(value: string): NumericLiteral {
-    const numericLiteral = new NumericLiteral(value);
-    return numericLiteral;
+    const numericLiteral = new NumericLiteral(value)
+    return numericLiteral
   }
 
   public createUnaryExpression(
     operator: Token<UnaryToken>,
     right: Expression
   ): UnaryExpression {
-    return new UnaryExpression(operator, right);
+    return new UnaryExpression(operator, right)
   }
 }
 export function getKeyByValue(object: Record<string, any>, value: TokenType) {
-  return Object.keys(object).find((key) => object[key] === value);
+  return Object.keys(object).find((key) => object[key] === value)
 }
 export const keywords: Record<string, TokenType> = {
   as: TokenType.AS,
@@ -97,10 +97,10 @@ export const keywords: Record<string, TokenType> = {
   or: TokenType.OR,
   is: TokenType.IS,
   not: TokenType.NOT,
-  "is not": TokenType.IS_NOT,
-  "not between": TokenType.NOT_BETWEEN,
-  "not ilike": TokenType.NOT_ILIKE,
-  "not like": TokenType.NOT_LIKE,
+  'is not': TokenType.IS_NOT,
+  'not between': TokenType.NOT_BETWEEN,
+  'not ilike': TokenType.NOT_ILIKE,
+  'not like': TokenType.NOT_LIKE,
   all: TokenType.ALL,
   distinct: TokenType.DISTINCT,
   limit: TokenType.LIMIT,
@@ -118,4 +118,4 @@ export const keywords: Record<string, TokenType> = {
   cross: TokenType.CROSS,
   update: TokenType.UPDATE,
   set: TokenType.SET,
-};
+}

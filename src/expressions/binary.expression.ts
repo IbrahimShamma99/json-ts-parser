@@ -1,9 +1,9 @@
-import { Visitor } from "../visitors/visitor";
-import { Token, TokenType } from "../tokens";
-import { Expression } from "./expression";
-import { Identifier } from "../identifiers/identifier";
-import { Literal } from "../literals/literal";
-import { Variant } from "../variant";
+import { Visitor } from '../visitors/visitor'
+import { Token, TokenType } from '../tokens'
+import { Expression } from './expression'
+import { Identifier } from '../identifiers/identifier'
+import { Literal } from '../literals/literal'
+import { Variant } from '../variant'
 
 export type BinaryToken =
   | TokenType.IS_NOT
@@ -27,28 +27,28 @@ export type BinaryToken =
   | TokenType.MODULO
   | TokenType.STAR
   | TokenType.SLASH
-  | TokenType.CONCAT;
+  | TokenType.CONCAT
 
-export type FactoryToken = TokenType.MODULO | TokenType.STAR | TokenType.SLASH;
+export type FactoryToken = TokenType.MODULO | TokenType.STAR | TokenType.SLASH
 
 export class BinaryExpression extends Expression {
-  public override variant: Variant = "operation";
+  public override variant: Variant = 'operation'
 
   constructor(
     public left: Identifier | Expression,
     public operator: Token<BinaryToken>,
     public right: Literal | Expression
   ) {
-    super();
+    super()
   }
 
   public accept<R>(visitor: Visitor<R>, row: Record<string, any>): R {
-    return visitor.visitBinaryExpr(this, row);
+    return visitor.visitBinaryExpr(this, row)
   }
 
   public toLiteral(): string {
     return `${this.left.toLiteral()} ${
       this.operator.lexeme
-    } ${this.right.toLiteral()}`;
+    } ${this.right.toLiteral()}`
   }
 }
