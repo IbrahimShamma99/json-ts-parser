@@ -36,6 +36,8 @@ export class JsVisitor extends Visitor<string> {
       ? `.filter((item) => item.${stmt.where.accept(this)})`
       : "";
 
+    const group = stmt.group ? `.groupBy([${stmt.group.accept(this)}])` : "";
+
     const limit = stmt.limit ? `.slice(0, ${stmt.limit.accept(this)})` : "";
 
     return `${where}${select}${limit}`;
@@ -69,7 +71,7 @@ export class JsVisitor extends Visitor<string> {
   }
 
   public visitGroupByExpr(expr: GroupByExpression, context?: any): string {
-    throw new Error("Method not implemented.");
+    return expr.columns.map((node) => node.accept(this)).join(",");
   }
 
   public visitNumericLiteralExpr(expr: NumericLiteral): string {

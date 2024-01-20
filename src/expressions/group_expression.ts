@@ -7,8 +7,7 @@ export class GroupByExpression extends Expression {
   public columns: Expression[] = [];
 
   public override accept<R>(visitor: Visitor<R>, context?: any): R {
-    //return visitor.visitGroupByExpr(this, context);
-    throw new Error("Method not implemented.");
+    return visitor.visitGroupByExpr(this, context);
   }
   public override toLiteral<R>(): string {
     throw new Error("Method not implemented.");

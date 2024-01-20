@@ -81,6 +81,22 @@ export class Parser {
       statement.where = this.expression();
     }
 
+    if (this.match(TokenType.GROUP)) {
+      this.consume(TokenType.BY, "Expect 'BY' after 'GROUP'");
+      while (!this.match(TokenType.ORDER, TokenType.LIMIT)) {
+        statement.group = factory.createGroupByExpression([]);
+        const columnName = this.expression();
+        statement.group.columns.push(columnName);
+        if (!this.match(TokenType.COMMA)) {
+          break;
+        }
+      }
+    }
+
+    if (statement.group && statement.group.columns.length === 0) {
+      throw new Error("Expect at least one column after 'GROUP BY'");
+    }
+
     return statement;
   }
 
@@ -273,7 +289,7 @@ export class Parser {
       return factory.createIdentifier(token.lexeme);
     }
 
-    // if (this.match(TokenType.DISTINCT)) {
+    //FIXME if (this.match(TokenType.DISTINCT)) {
     // 	let expression = this.expression();
     // 	return factory.createIdentifier(token.lexeme);
     // }

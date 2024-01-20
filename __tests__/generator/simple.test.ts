@@ -61,4 +61,23 @@ describe("Generators Tests", () => {
 
     expect(results).toEqual([{ username: "user1", id: 1 }]);
   });
+
+  it("should generate from simple query with where numeric and group by", () => {
+    const source =
+      "SELECT user_name as username , id FROM users Group by user_name , id ;";
+
+    const generator = new Generator([
+      { id: 1, user_name: "user1" },
+      { id: 2, user_name: "user2" },
+    ]);
+
+    const results = generator.execute(source);
+
+    generator.source;
+
+    expect(results).toEqual([
+      { id: 1, username: "user1" },
+      { id: 2, username: "user2" },
+    ]);
+  });
 });

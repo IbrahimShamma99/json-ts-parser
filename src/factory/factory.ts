@@ -1,4 +1,5 @@
 import { Expression } from "../expressions/expression";
+import { GroupByExpression } from "../expressions/group_expression";
 import { UnaryExpression, UnaryToken } from "../expressions/unary.expression";
 import { Identifier } from "../identifiers/identifier";
 import { NumericLiteral } from "../literals/numeric.literal";
@@ -20,6 +21,15 @@ export class Factory {
     statement.order = order;
     statement.limit = limit;
     return statement;
+  }
+
+  public createGroupByExpression(
+    columns: (Expression | Identifier)[]
+  ): GroupByExpression {
+    const groupBy = new GroupByExpression();
+    groupBy.columns = columns;
+
+    return groupBy;
   }
 
   public createIdentifier(name: string, alias?: string): Identifier {

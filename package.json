@@ -1,6 +1,6 @@
 {
     "name": "sql-js-data-mapper",
-    "version": "0.0.4",
+    "version": "0.0.5",
     "description": "A tiny compiler that takes SQL and JS object and runs the sql on the object as if the object became a table in the database, using only js",
     "main": "dist/index.js",
     "types": "dist/index.d.ts",

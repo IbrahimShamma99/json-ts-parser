@@ -30,8 +30,8 @@ export class Generator {
   generateCode(source: string): string {
     this.source = source;
     const jsCode = `
-    function groupBy(array, keys) {
-      return array.reduce((result, item) => {
+    Array.prototype.groupBy = function (keys) {
+      return this.reduce((result, item) => {
         const groupKey = keys.map((key) => item[key]).join("-");
 
         if (!result[groupKey]) {
