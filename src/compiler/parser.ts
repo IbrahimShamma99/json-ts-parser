@@ -118,6 +118,9 @@ export class Parser {
       throw new Error("Expect at least one column / Expr after 'ORDER BY'");
     }
 
+    if (this.match(TokenType.LIMIT) && this.match(TokenType.NUMBER)) {
+    }
+
     return statement;
   }
 

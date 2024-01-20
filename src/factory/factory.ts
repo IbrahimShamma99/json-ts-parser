@@ -41,6 +41,10 @@ export class Factory {
     return order;
   }
 
+  public createLimitExpression(limit: Expression): LimitExpression {
+    return new LimitExpression(limit);
+  }
+
   public createIdentifier(name: string, alias?: string): Identifier {
     return new Identifier(name, alias);
   }

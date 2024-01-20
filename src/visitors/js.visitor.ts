@@ -89,11 +89,14 @@ export class JsVisitor extends Visitor<string> {
   }
 
   public visitGroupByExpr(expr: GroupByExpression, context?: any): string {
-    //FIXME
     return expr.columns.map((node) => `'${node.accept(this)}'`).join(",");
   }
 
   public visitNumericLiteralExpr(expr: NumericLiteral): string {
     return expr.value;
+  }
+
+  public visitLimitExpr(expr: LimitExpression, context?: any): string {
+    return expr.expression.accept(this);
   }
 }

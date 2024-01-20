@@ -8,10 +8,11 @@ export class LimitExpression extends Expression {
   constructor(public expression: Expression) {
     super();
   }
+
   public override accept<R>(visitor: Visitor<R>, context: any): R {
-    //return visitor.visitLimitExpr(this, context);
-    throw new Error("Method not implemented.");
+    return visitor.visitLimitExpr(this, context);
   }
+
   public override toLiteral<R>(): string {
     throw new Error("Method not implemented.");
   }
