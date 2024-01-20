@@ -29,9 +29,22 @@ export class Generator {
 
   generateCode(source: string): string {
     this.source = source;
-    const jsCode = `function run() { return ${JSON.stringify(
-      this.data
-    )}${source} } run()`;
+    const jsCode = `
+    function groupBy(array, keys) {
+      return array.reduce((result, item) => {
+        const groupKey = keys.map((key) => item[key]).join("-");
+
+        if (!result[groupKey]) {
+          result[groupKey] = [];
+        }
+        result[groupKey].push(item);
+        return result;
+      }, {});
+    }
+    function run() {
+      return ${JSON.stringify(this.data)}${source}
+    }
+    run()`;
     return jsCode;
   }
 

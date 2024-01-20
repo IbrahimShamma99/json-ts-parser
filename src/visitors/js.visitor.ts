@@ -1,6 +1,8 @@
 import { BinaryExpression } from "../expressions/binary.expression";
+import { GroupByExpression } from "../expressions/group_expression";
 import { LimitExpression } from "../expressions/limit.expression";
 import { Identifier } from "../identifiers/identifier";
+import { NumericLiteral } from "../literals/numeric.literal";
 import { StringLiteral } from "../literals/string.literal";
 import { SelectStatement } from "../statements/select.statement";
 import { Statement } from "../statements/statement";
@@ -64,5 +66,13 @@ export class JsVisitor extends Visitor<string> {
       default:
         throw new Error("Invalid operator or not implemented yet");
     }
+  }
+
+  public visitGroupByExpr(expr: GroupByExpression, context?: any): string {
+    throw new Error("Method not implemented.");
+  }
+
+  public visitNumericLiteralExpr(expr: NumericLiteral): string {
+    return expr.value;
   }
 }
