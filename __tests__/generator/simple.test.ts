@@ -74,4 +74,19 @@ describe('Generators Tests', () => {
       { id: 2, username: 'user2' },
     ])
   })
+
+  it('should generate from simple query with limit', () => {
+    const source =
+      'SELECT user_name as username , id FROM users order by user_name , id limit 1 '
+    const generator = new Generator([
+      { id: 2, user_name: 'user2' },
+      { id: 1, user_name: 'user1' },
+    ])
+
+    const tokens = generator.scan(source)
+
+    const results = generator.execute(source)
+
+    expect(results).toEqual([{ id: 1, username: 'user1' }])
+  })
 })

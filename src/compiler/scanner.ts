@@ -56,6 +56,7 @@ export class Scanner {
       'outer',
       'group',
       'having',
+      'limit',
     ]
   }
 

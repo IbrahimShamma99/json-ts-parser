@@ -58,7 +58,7 @@ export class JsVisitor extends Visitor<string> {
 
     const limit = stmt.limit ? `.limit(${stmt.limit.accept(this)})` : ''
 
-    return `${where}${select}${group}${order}${limit}`
+    return `${where}${select}${order}${limit}${group}`
   }
 
   public visitBinaryExpr(expr: BinaryExpression, context: any): string {
@@ -79,9 +79,9 @@ export class JsVisitor extends Visitor<string> {
       case TokenType.GREATER:
       case TokenType.GREATER_EQUAL:
         const operator = keyOperatorMap[expr.operator.type]
-        return `${expr.left.accept(
+        return `${expr.left.accept(this)} ${operator} ${expr.right.accept(
           this
-        )} ${operator} ${expr.right.accept(this)}`
+        )}`
 
       default:
         throw new Error('Invalid operator or not implemented yet')

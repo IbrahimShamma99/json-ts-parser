@@ -1,3 +1,7 @@
+## [0.0.8] - 2024-01-20
+
+- Add Built in Orderby inside js prototype
+
 ## [0.0.7] - 2024-01-20
 
 - Add Examples into README.md

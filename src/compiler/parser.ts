@@ -11,6 +11,7 @@ import { Token } from '../tokens'
 import { TokenType } from '../tokens/tokentype'
 import { OrderExpression } from '../expressions/order_expression'
 import { OrderByColumn } from '../identifiers/column.identifier'
+import { NumericLiteral } from '../literals/numeric.literal'
 
 const factory = new Factory()
 
@@ -116,6 +117,10 @@ export class Parser {
     }
 
     if (this.match(TokenType.LIMIT) && this.match(TokenType.NUMBER)) {
+      const limit = factory.createLimitExpression(
+        new NumericLiteral(this.previous<TokenType.NUMBER>().lexeme)
+      )
+      statement.limit = limit
     }
 
     return statement

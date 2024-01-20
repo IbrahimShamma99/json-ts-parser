@@ -41,7 +41,7 @@ export class Factory {
     return order
   }
 
-  public createLimitExpression(limit: Expression): LimitExpression {
+  public createLimitExpression(limit: NumericLiteral): LimitExpression {
     return new LimitExpression(limit)
   }
 
