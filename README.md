@@ -31,5 +31,6 @@ generator.execute(`
 - [x] Accept Where in Select Statement
 - [x] Accept Group By in Select Statement
 - [x] Accept Order By in Select Statement
+- [ ] Call Expressions in Select Statement
 - [ ] Ask for AST from Select Statement Parser
 - [ ] SQL Syntax Analyzer
