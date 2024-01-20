@@ -23,6 +23,8 @@ generator.execute(`
 // returns [{ id: "id1", username: "user1" }]
 ```
 
+### For More examples, check [here](https://github.com/IbrahimShamma99/sql-js-tiny-compiler/blob/master/__tests__/generator/simple.test.ts)
+
 ## TODO List
 
 - [x] Basic SQL Parser

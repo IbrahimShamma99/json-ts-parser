@@ -1,3 +1,7 @@
+## [0.0.7] - 2024-01-20
+
+- Add Examples into README.md
+
 ## [0.0.6] - 2024-01-20
 
 - Accept Order By in Select Statement
