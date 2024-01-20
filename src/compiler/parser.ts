@@ -12,6 +12,8 @@ import { Statement } from "../statements/statement";
 import { Factory, getKeyByValue, keywords } from "../factory/factory";
 import { Token } from "../tokens";
 import { TokenType } from "../tokens/tokentype";
+import { OrderExpression } from "../expressions/order_expression";
+import { OrderByColumn } from "../identifiers/column.identifier";
 
 const factory = new Factory();
 
@@ -83,7 +85,14 @@ export class Parser {
 
     if (this.match(TokenType.GROUP)) {
       this.consume(TokenType.BY, "Expect 'BY' after 'GROUP'");
-      while (!this.match(TokenType.ORDER, TokenType.LIMIT)) {
+      while (
+        !this.match(
+          TokenType.ORDER,
+          TokenType.LIMIT,
+          TokenType.SEMICOLON,
+          TokenType.EOF
+        )
+      ) {
         statement.group = factory.createGroupByExpression([]);
         const columnName = this.expression();
         statement.group.columns.push(columnName);
@@ -92,12 +101,33 @@ export class Parser {
         }
       }
     }
-
     if (statement.group && statement.group.columns.length === 0) {
       throw new Error("Expect at least one column after 'GROUP BY'");
     }
 
+    if (this.match(TokenType.ORDER)) {
+      this.consume(TokenType.BY, "Expect 'BY' after 'GROUP'");
+      statement.order = factory.createOrderByExpression([]);
+      do {
+        const columnName = this.orderByCol();
+        statement.order.columns.push(columnName);
+      } while (this.match(TokenType.COMMA));
+    }
+
+    if (statement.order && statement.order.columns.length === 0) {
+      throw new Error("Expect at least one column / Expr after 'ORDER BY'");
+    }
+
     return statement;
+  }
+
+  orderByCol(): OrderByColumn {
+    const expression = this.expression();
+    const col = new OrderByColumn(expression);
+    if (this.match(TokenType.DESC)) {
+      col.direction = "DESC";
+    }
+    return col;
   }
 
   expression() {

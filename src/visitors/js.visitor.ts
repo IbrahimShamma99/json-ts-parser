@@ -1,6 +1,7 @@
 import { BinaryExpression } from "../expressions/binary.expression";
 import { GroupByExpression } from "../expressions/group_expression";
 import { LimitExpression } from "../expressions/limit.expression";
+import { OrderExpression } from "../expressions/order_expression";
 import { Identifier } from "../identifiers/identifier";
 import { NumericLiteral } from "../literals/numeric.literal";
 import { StringLiteral } from "../literals/string.literal";
@@ -16,6 +17,10 @@ export class JsVisitor extends Visitor<string> {
       throw new Error();
     }
     return select.accept(this);
+  }
+
+  public visitOrderByExpr(expr: OrderExpression, context?: any): string {
+    return `.orderBy([])`;
   }
 
   public visitStringLiteralExpr(expr: StringLiteral): string {

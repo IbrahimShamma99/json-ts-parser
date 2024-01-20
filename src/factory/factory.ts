@@ -1,6 +1,9 @@
 import { Expression } from "../expressions/expression";
 import { GroupByExpression } from "../expressions/group_expression";
+import { LimitExpression } from "../expressions/limit.expression";
+import { OrderExpression } from "../expressions/order_expression";
 import { UnaryExpression, UnaryToken } from "../expressions/unary.expression";
+import { OrderByColumn } from "../identifiers/column.identifier";
 import { Identifier } from "../identifiers/identifier";
 import { NumericLiteral } from "../literals/numeric.literal";
 import { SelectStatement } from "../statements/select.statement";
@@ -11,8 +14,8 @@ export class Factory {
     columns: (Expression | Identifier)[],
     from?: Expression,
     where?: Expression,
-    order?: Expression,
-    limit?: Expression
+    order?: OrderExpression,
+    limit?: LimitExpression
   ): SelectStatement {
     const statement = new SelectStatement();
     statement.columns = columns;
@@ -30,6 +33,12 @@ export class Factory {
     groupBy.columns = columns;
 
     return groupBy;
+  }
+
+  public createOrderByExpression(columns: OrderByColumn[]): OrderExpression {
+    const order = new OrderExpression();
+    order.columns = columns;
+    return order;
   }
 
   public createIdentifier(name: string, alias?: string): Identifier {

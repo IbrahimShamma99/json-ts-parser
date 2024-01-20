@@ -6,6 +6,8 @@ import { Statement } from "../statements/statement";
 
 export class Generator {
   public source!: string;
+  public JsSource!: string;
+
   constructor(private data: Record<any, any>) {}
   run(jsCode: string) {
     return eval(this.generateCode(jsCode));
@@ -18,18 +20,37 @@ export class Generator {
   }
 
   parse(tokens: Token<TokenType>[]): Statement[] {
-    const parser = new Parser(tokens);
-    return parser.parse();
+    return new Parser(tokens).parse();
   }
 
   visit(statements: Statement[]): string {
-    const jsVisitor = new JsVisitor().execute(statements);
-    return jsVisitor;
+    return new JsVisitor().execute(statements);
   }
 
   generateCode(source: string): string {
     this.source = source;
     const jsCode = `
+    Array.prototype.orderBy = function (orderByConfigs) {
+      return this.slice().sort((a, b) => {
+        for (const orderByConfig of orderByConfigs) {
+          const colValueA = a[orderByConfig.column];
+          const colValueB = b[orderByConfig.column];
+
+          if (orderByConfig.direction === 'asc') {
+            if (colValueA > colValueB) return 1;
+            if (colValueA < colValueB) return -1;
+          } else if (orderByConfig.direction === 'desc') {
+            if (colValueB > colValueA) return 1;
+            if (colValueB < colValueA) return -1;
+          } else {
+            throw new Error('Invalid direction. Use "asc" or "desc".');
+          }
+        }
+
+        return this;
+      });
+    }
+
     Array.prototype.groupBy = function (keys) {
       return this.reduce((result, item) => {
         const groupKey = keys.map((key) => item[key]).join("-");
@@ -45,6 +66,7 @@ export class Generator {
       return ${JSON.stringify(this.data)}${source}
     }
     run()`;
+    this.JsSource = jsCode;
     return jsCode;
   }
 
