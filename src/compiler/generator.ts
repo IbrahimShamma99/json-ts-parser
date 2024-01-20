@@ -6,9 +6,7 @@ import { Statement } from "../statements/statement";
 
 export class Generator {
   public source!: string;
-
   constructor(private data: Record<any, any>) {}
-
   run(jsCode: string) {
     return eval(this.generateCode(jsCode));
   }
@@ -34,17 +32,13 @@ export class Generator {
     const jsCode = `function run() { return ${JSON.stringify(
       this.data
     )}${source} } run()`;
-
     return jsCode;
   }
 
   execute(source: string): Record<any, any> {
     const tokens = this.scan(source);
-
     const ast = this.parse(tokens);
-
     const jsCode = this.visit(ast);
-
     return this.run(jsCode);
   }
 }

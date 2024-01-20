@@ -1,4 +1,4 @@
-import { Generator } from "../../src";
+import { Generator } from "../../";
 
 describe("Generators Tests", () => {
   it("should generate from simple query", () => {
