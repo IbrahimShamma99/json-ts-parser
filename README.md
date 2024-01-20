@@ -2,7 +2,7 @@
 
 ## Fun Project with SQL and JS
 
-### Props to [Crafting Interpreters](https://craftinginterpreters.com/) for the knowledge and inspiration
+### Props to [Crafting Interpreters](https://craftinginterpreters.com/) && [SQL-Tooling](https://github.com/ezzabuzaid/sql-tooling) for the knowledge and inspiration
 
 #### Example
 
