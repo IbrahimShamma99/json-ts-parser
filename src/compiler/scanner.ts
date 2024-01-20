@@ -13,8 +13,9 @@ export class Scanner {
   private get showStopperKeywords() {
     return [
       ' ',
-      ')',
       '}',
+      '(',
+      ')',
       '\n',
       ';',
       ',',
@@ -31,6 +32,11 @@ export class Scanner {
 
   private get reservedKeywords() {
     return [
+      'count',
+      'sum',
+      'max',
+      'min',
+      'avg',
       'select',
       'from',
       'where',
@@ -66,6 +72,7 @@ export class Scanner {
       this.advance()
       peek = this.peek()
     }
+    this.goBack()
   }
 
   scan = () => {
@@ -202,7 +209,7 @@ export class Scanner {
   }
 
   private get lexeme() {
-    return this.source.substring(this.start - 1, this.current - 1)
+    return this.source.substring(this.start - 1, this.current)
   }
 
   private addToken = (type: TokenType, lexeme?: string) => {
@@ -219,6 +226,10 @@ export class Scanner {
 
   private advance = () => {
     this.current++
+  }
+
+  private goBack = () => {
+    this.current--
   }
 
   private match(expected: string): boolean {

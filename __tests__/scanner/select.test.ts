@@ -29,4 +29,18 @@ describe('Scanner Tests', () => {
 
     expect(scanner.tokens).toHaveLength(11)
   })
+
+  it('should scan a Count in select statement', () => {
+    const source = `
+            SELECT
+                COUNT(id)
+                from users
+                limit 15;
+                `
+
+    const scanner = new Scanner(source)
+    scanner.scan()
+
+    expect(scanner.tokens).toHaveLength(10)
+  })
 })
