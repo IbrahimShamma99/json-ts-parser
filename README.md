@@ -22,3 +22,9 @@ generator.execute(`
 
 // returns [{ id: "id1", username: "user1" }]
 ```
+
+## TODO List
+
+- [x] Basic SQL Parser
+- [ ] Ask for AST from Select Statement Parser
+- [ ] SQL Syntax Analyzer
