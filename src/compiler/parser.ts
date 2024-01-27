@@ -6,7 +6,12 @@ import { BooleanLiteral } from '../literals/boolean.literal'
 import { NullLiteral } from '../literals/null.literal'
 import { StringLiteral } from '../literals/string.literal'
 import { Statement } from '../statements/statement'
-import { Factory, getKeyByValue, keywords } from '../factory/factory'
+import {
+  Factory,
+  aggregateKeywords,
+  getKeyByValue,
+  keywords,
+} from '../factory/factory'
 import { Token } from '../tokens'
 import { TokenType } from '../tokens/tokentype'
 import { OrderExpression } from '../expressions/order_expression'
@@ -54,6 +59,10 @@ export class Parser {
 
     do {
       const keyword = getKeyByValue(keywords, this.currentToken.type)
+      const aggregateKeyword = getKeyByValue(
+        aggregateKeywords,
+        this.currentToken.type
+      )
 
       if (keyword) {
         // allow keywords as column names
@@ -61,7 +70,15 @@ export class Parser {
           factory.createIdentifier(this.currentToken.lexeme)
         )
         this.advance()
-      } else {
+      } else if (aggregateKeyword) {
+        // allow aggregate functions as column names
+        statement.columns.push(
+          factory.createIdentifier(this.currentToken.lexeme)
+        )
+        this.advance()
+      }
+      // else if (this.match(TokenType.STAR)) { }
+      else {
         const columnName = this.expression()
         statement.columns.push(columnName)
       }

@@ -64,6 +64,15 @@ export class Factory {
 export function getKeyByValue(object: Record<string, any>, value: TokenType) {
   return Object.keys(object).find((key) => object[key] === value)
 }
+
+export const aggregateKeywords: Record<string, TokenType> = {
+  count: TokenType.COUNT,
+  sum: TokenType.SUM,
+  avg: TokenType.AVG,
+  min: TokenType.MIN,
+  max: TokenType.MAX,
+}
+
 export const keywords: Record<string, TokenType> = {
   as: TokenType.AS,
   by: TokenType.BY,
