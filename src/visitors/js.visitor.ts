@@ -1,9 +1,12 @@
 import { BinaryExpression } from '../expressions/binary.expression'
 import { GroupByExpression } from '../expressions/group_expression'
+import { GroupingExpression } from '../expressions/grouping.expression'
 import { LimitExpression } from '../expressions/limit.expression'
 import { OrderExpression } from '../expressions/order_expression'
 import { OrderByColumn } from '../identifiers/column.identifier'
 import { Identifier } from '../identifiers/identifier'
+import { BooleanLiteral } from '../literals/boolean.literal'
+import { NullLiteral } from '../literals/null.literal'
 import { NumericLiteral } from '../literals/numeric.literal'
 import { StringLiteral } from '../literals/string.literal'
 import { SelectStatement } from '../statements/select.statement'
@@ -18,6 +21,16 @@ export class JsVisitor extends Visitor<string> {
       throw new Error()
     }
     return select.accept(this)
+  }
+
+  public visitBooleanLiteralExpr(expr: BooleanLiteral): string {
+    throw new Error('Method not implemented.')
+  }
+  public visitGroupingExpr(expr: GroupingExpression): string {
+    throw new Error('Method not implemented.')
+  }
+  public visitNullLiteralExpr(expr: NullLiteral): string {
+    throw new Error('Method not implemented.')
   }
 
   public visitOrderByColumn(expr: OrderByColumn): string {
