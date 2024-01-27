@@ -31,6 +31,7 @@ generator.execute(`
 - [x] Accept Where in Select Statement
 - [x] Accept Group By in Select Statement
 - [x] Accept Order By in Select Statement
+- [ ] Accept JSON Objects in From Statement
 - [ ] Add Support Aggregates Functions inside Select Statement
 - [ ] Make Order by accept Numeric Expressions and Aggregate Functions
 - [ ] Support sub-queries in Select Statement
