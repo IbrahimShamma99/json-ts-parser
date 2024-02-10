@@ -17,8 +17,8 @@ export enum TokenType {
   NULL = 'NULL',
 }
 
-export class Token {
-  public readonly type: TokenType
+export class Token<T = TokenType> {
+  public readonly type: T
   public readonly lexeme: string
   public readonly line: number
   public readonly start: number
@@ -31,7 +31,7 @@ export class Token {
     start,
     end,
   }: {
-    type: TokenType
+    type: T
     lexeme: string
     line: number
     start: number

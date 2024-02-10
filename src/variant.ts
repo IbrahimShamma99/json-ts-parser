@@ -6,3 +6,4 @@ export type Variant =
   | 'object'
   | 'array'
   | 'identifier'
+  | 'operation'

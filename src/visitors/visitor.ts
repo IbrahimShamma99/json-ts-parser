@@ -5,6 +5,7 @@ import { NumericLiteral } from '../literals/numeric.literal'
 import { StringLiteral } from '../literals/string.literal'
 import { ObjectLiteral } from '../literals/object.literal'
 import { ArrayLiteral } from '../literals/array.literal'
+import { BinaryExpression } from '../expressions/binary.expression'
 
 export abstract class Visitor<R> {
   public abstract visitNumericLiteralExpr(expr: NumericLiteral): R
@@ -14,4 +15,5 @@ export abstract class Visitor<R> {
   public abstract visitIdentifier(expr: Identifier): R
   public abstract visitObjectLiteral(expr: ObjectLiteral): R
   public abstract visitArrayLiteral(expr: ArrayLiteral): R
+  public abstract visitBinaryExpr(expr: BinaryExpression): R
 }

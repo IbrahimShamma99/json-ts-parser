@@ -1,4 +1,4 @@
-import { Expression } from '../expression'
+import { Expression } from '../expressions/expression'
 import { Variant } from '../variant'
 
 export abstract class Literal extends Expression {

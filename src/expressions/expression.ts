@@ -1,5 +1,5 @@
-import { Visitor } from './visitors/visitor'
-import { Variant } from './variant'
+import { Visitor } from '../visitors/visitor'
+import { Variant } from '../variant'
 
 export abstract class Expression {
   public abstract variant: Variant
