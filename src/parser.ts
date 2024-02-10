@@ -1,6 +1,10 @@
+import { ArrayExpression } from './expressions/array.expression'
+import { ObjectExpression } from './expressions/object.expression'
 import { Token, TokenType } from './types'
 
 export class Parser {
+  public tree: (ObjectExpression | ArrayExpression)[] = []
+
   private current: number = 0
 
   private readonly tokens!: Token[]
@@ -9,21 +13,44 @@ export class Parser {
     this.tokens = tokens
   }
 
-  parse() {}
+  parse() {
+    while (!this.isAtEnd) {
+      // this.tree.push(this.parseValue())
+    }
+  }
 
-  match(token: Token) {
-    if (this.check(token)) {
+  private parseValue() {
+    if (this.match(TokenType.LEFT_BRACKET)) {
+      return this.parseObject()
+    } else if (this.match(TokenType.SQUARE_LEFT_BRACKET)) {
+      return this.parseArray()
+    }
+  }
+
+  private parseArray() {}
+
+  private parseObject() {
+    // const object = new ObjectExpression()
+    // while (!this.match(TokenType.RIGHT_BRACKET)) {
+    //   object.add(this.parseObjectMember())
+    // }
+    // return object
+  }
+
+  private match(...tokens: TokenType[]) {
+    if (this.check(...tokens)) {
       this.advance()
       return true
     }
     return false
   }
 
-  check(token: Token) {
-    if (this.isAtEnd) {
-      return false
-    }
-    return this.peek.type === token.type
+  private check(...tokens: TokenType[]): boolean {
+    return tokens.includes(this.currentToken.type)
+  }
+
+  private get currentToken() {
+    return this.tokens[this.current]
   }
 
   advance() {

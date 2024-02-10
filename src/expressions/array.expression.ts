@@ -1,13 +1,13 @@
 import { Visitor } from '../visitors/visitor'
 import { Variant } from '../variant'
-import { Literal } from './literal'
+import { Expression } from './expression'
 
-export class ObjectLiteral extends Literal {
+export class ArrayExpression extends Expression {
   public override variant: Variant = 'object'
   public override accept<R>(visitor: Visitor<R>): R {
-    return visitor.visitObjectLiteral(this)
+    return visitor.visitArrayExpr(this)
   }
   public override toLiteral<R>(): string {
-    return this.value
+    return 'ArrayLiteral'
   }
 }
