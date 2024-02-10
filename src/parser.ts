@@ -3,7 +3,7 @@ import { ObjectExpression } from './expressions/object.expression'
 import { Token, TokenType } from './types'
 
 export class Parser {
-  public tree: (ObjectExpression | ArrayExpression)[] = []
+  public tree!: ObjectExpression | ArrayExpression
 
   private current: number = 0
 
