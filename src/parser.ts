@@ -3,7 +3,11 @@ import { Token, TokenType } from './types'
 export class Parser {
   private current: number = 0
 
-  constructor(private readonly tokens: Token) {}
+  private readonly tokens!: Token[]
+
+  constructor(tokens: Token[]) {
+    this.tokens = tokens
+  }
 
   parse() {}
 
@@ -19,18 +23,18 @@ export class Parser {
     if (this.isAtEnd) {
       return false
     }
-    return this.peek().type === token
+    return this.peek.type === token.type
   }
 
   advance() {
     if (!this.isAtEnd) {
       this.current++
     }
-    return this.previous()
+    return this.previous
   }
 
   get isAtEnd() {
-    return this.peek().type === TokenType.EOF
+    return this.peek.type === TokenType.EOF
   }
 
   get peek() {

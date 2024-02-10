@@ -8,6 +8,6 @@ export class StringLiteral extends Literal {
     return visitor.visitStringLiteralExpr(this)
   }
   public override toLiteral<R>(): string {
-    throw new Error('Method not implemented.')
+    return this.value
   }
 }

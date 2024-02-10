@@ -2,10 +2,10 @@ import { Visitor } from '../visitors/visitor'
 import { Variant } from '../variant'
 import { Literal } from './literal'
 
-export class NumericLiteral extends Literal {
-  public override variant: Variant = 'number'
+export class ObjectLiteral extends Literal {
+  public override variant: Variant = 'object'
   public override accept<R>(visitor: Visitor<R>): R {
-    return visitor.visitNumericLiteralExpr(this)
+    return visitor.visitObjectLiteral(this)
   }
   public override toLiteral<R>(): string {
     return this.value

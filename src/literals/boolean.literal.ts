@@ -3,13 +3,11 @@ import { Variant } from '../variant'
 import { Literal } from './literal'
 
 export class BooleanLiteral extends Literal {
-  public override variant: Variant = 'boolean'
+  public override variant: Variant = 'number'
   public override accept<R>(visitor: Visitor<R>): R {
-    //    return visitor.visitBooleanLiteralExpr(this);
-    throw new Error('Method not implemented.')
+    return visitor.visitBooleanLiteralExpr(this)
   }
-
-  public override toLiteral(): string {
-    return this.value ? 'TRUE' : 'FALSE'
+  public override toLiteral<R>(): string {
+    return this.value
   }
 }

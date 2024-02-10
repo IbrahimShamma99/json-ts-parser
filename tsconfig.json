@@ -11,7 +11,7 @@
       "es2017",
       "es7",
       "es6",
-      "dom",
+      "dom"
     ] /* Specify library files to be included in the compilation. */,
     // "allowJs": true,                             /* Allow javascript files to be compiled. */
     // "checkJs": true,                             /* Report errors in .js files. */
@@ -75,8 +75,14 @@
 
     /* Advanced Options */
     "skipLibCheck": true /* Skip type checking of declaration files. */,
-    "forceConsistentCasingInFileNames": true /* Disallow inconsistently-cased references to the same file. */,
+    "forceConsistentCasingInFileNames": true /* Disallow inconsistently-cased references to the same file. */
   },
   "exclude": ["node_modules", "dist"],
-  "include": ["src/*"],
+  "include": [
+    "src/*",
+    "src/types",
+    "src/parser.ts",
+    "src/scanner.ts",
+    "src/expressions"
+  ]
 }
