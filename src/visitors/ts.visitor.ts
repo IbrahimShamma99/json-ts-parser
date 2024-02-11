@@ -6,37 +6,42 @@ import { NumericLiteral } from '../literals/numeric.literal'
 import { ObjectExpression } from '../expressions/object.expression'
 import { StringLiteral } from '../literals/string.literal'
 import { Visitor } from './visitor'
+import { BinaryExpression } from '../expressions/binary.expression'
 
 export class TSVisitor extends Visitor<string> {
+  public execute(json: ObjectExpression | ArrayExpression): string {
+    return json.accept(this)
+  }
+
   public visitNumericLiteralExpr(expr: NumericLiteral): string {
-    return `visitNumericLiteralExpr(${expr})`
+    return `number`
   }
 
   public visitNullLiteralExpr(expr: NullLiteral): string {
-    return `visitNullLiteralExpr(${expr})`
+    return `null`
   }
 
   public visitBooleanLiteralExpr(expr: BooleanLiteral): string {
-    return `visitBooleanLiteralExpr(${expr})`
+    return `boolean`
   }
 
   public visitStringLiteralExpr(expr: StringLiteral): string {
-    return `visitStringLiteralExpr(${expr})`
+    return `string`
   }
 
   public visitIdentifier(expr: Identifier): string {
-    return `visitIdentifier(${expr})`
+    return `${expr.text}`
   }
 
   public visitObjectExpr(expr: ObjectExpression): string {
-    return `visitObjectExpr(${expr})`
+    return `{${expr.exprs.map((e) => e.accept(this)).join(', ')}}`
   }
 
   public visitArrayExpr(expr: ArrayExpression): string {
     return `visitArrayExpr(${expr})`
   }
 
-  public visitBinaryExpr(expr: any): string {
-    return `visitBinaryExpr(${expr})`
+  public visitBinaryExpr(expr: BinaryExpression): string {
+    return `${expr.left.accept(this)}: ${expr.right.accept(this)}`
   }
 }

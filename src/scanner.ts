@@ -7,7 +7,7 @@ export class Scanner {
   private line: number = 1
 
   constructor(private readonly source: string) {
-    this.source = this.source.toLowerCase().trim()
+    this.source = this.source.trim()
   }
 
   scan() {
@@ -39,6 +39,16 @@ export class Scanner {
           throw new Error('Invalid token')
         }
         break
+      case 'n':
+        while (this.isCurrentChar) {
+          this.advance()
+        }
+        if (this.lexeme === 'null') {
+          this.addToken(TokenType.NULL)
+        } else {
+          throw new Error('Invalid token')
+        }
+        break
       case 'f':
         while (this.isCurrentChar) {
           this.advance()
@@ -50,16 +60,16 @@ export class Scanner {
         }
         break
       case '[':
-        this.addToken(TokenType.SQUARE_RIGHT_BRACKET, '[')
+        this.addToken(TokenType.SQUARE_LEFT_BRACKET, '[')
         break
       case ']':
-        this.addToken(TokenType.SQUARE_LEFT_BRACKET, ']')
+        this.addToken(TokenType.SQUARE_RIGHT_BRACKET, ']')
         break
       case '{':
-        this.addToken(TokenType.RIGHT_BRACKET, '{')
+        this.addToken(TokenType.LEFT_BRACKET, '{')
         break
       case '}':
-        this.addToken(TokenType.LEFT_BRACKET, '}')
+        this.addToken(TokenType.RIGHT_BRACKET, '}')
         break
       case ':':
         this.addToken(TokenType.COLON, ':')
@@ -107,7 +117,10 @@ export class Scanner {
   }
 
   get isCurrentChar() {
-    return this.peek >= 'a' && this.peek <= 'z'
+    return (
+      (this.peek >= 'a' && this.peek <= 'z') ||
+      (this.peek >= 'A' && this.peek <= 'Z')
+    )
   }
 
   match(lexeme: string) {
@@ -172,5 +185,10 @@ export class Scanner {
       }
     }
     this.addToken(TokenType.NUMBER)
+    if (this.peek === ',') {
+      this.start = this.current
+      this.advance()
+      this.addToken(TokenType.COMMA)
+    }
   }
 }
