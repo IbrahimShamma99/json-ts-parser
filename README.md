@@ -20,3 +20,13 @@ const type = new TSVisitor().execute(parser.tree)
 
 // type = 'interface {name: string, age: number, isStudent: boolean, gradDate: null}'
 ```
+
+## TODO
+
+- [x] Create a scanner
+- [x] Create a parser
+- [x] Create a visitor
+- [ ] Create a transformer
+- [ ] Create a printer
+- [ ] Create a CLI
+- [ ] Accept Arrays
