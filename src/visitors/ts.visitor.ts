@@ -10,7 +10,7 @@ import { BinaryExpression } from '../expressions/binary.expression'
 
 export class TSVisitor extends Visitor<string> {
   public execute(json: ObjectExpression | ArrayExpression): string {
-    return json.accept(this)
+    return `interface ${json.accept(this)}`
   }
 
   public visitNumericLiteralExpr(expr: NumericLiteral): string {
