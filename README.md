@@ -26,6 +26,7 @@ const type = new TSVisitor().execute(parser.tree)
 - [x] Create a scanner
 - [x] Create a parser
 - [x] Create a visitor
+- [ ] Accept inner objects
 - [ ] Create a transformer
 - [ ] Create a printer
 - [ ] Create a CLI

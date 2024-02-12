@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "module": "commonjs",
     /* Visit https://aka.ms/tsconfig.json to read more about this file */
 
     /* Basic Options */
@@ -78,11 +79,5 @@
     "forceConsistentCasingInFileNames": true /* Disallow inconsistently-cased references to the same file. */
   },
   "exclude": ["node_modules", "dist"],
-  "include": [
-    "src/*",
-    "src/types",
-    "src/parser.ts",
-    "src/scanner.ts",
-    "src/expressions"
-  ]
+  "include": ["src/*", "src/types", "src/*.ts", "src/expressions"]
 }
