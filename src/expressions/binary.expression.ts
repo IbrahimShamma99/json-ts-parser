@@ -13,7 +13,7 @@ export class BinaryExpression extends Expression {
   constructor(
     public left: Identifier,
     public operator: Token<BinaryToken>,
-    public right: Literal
+    public right: Literal | Expression
   ) {
     super()
   }

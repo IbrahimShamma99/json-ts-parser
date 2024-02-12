@@ -4,7 +4,7 @@ import { TSVisitor } from './visitors/ts.visitor'
 
 const args = process.argv.slice(2)
 
-if (args.length) {
+if (args.length && false) {
   const jsonData: string = args[0]
   const scanner = new Scanner(jsonData)
   scanner.scan()

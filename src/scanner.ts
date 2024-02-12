@@ -6,8 +6,10 @@ export class Scanner {
   private start: number = 0
   private line: number = 1
 
-  constructor(private readonly source: string) {
-    this.source = this.source.trim()
+  private scanningCode!: string
+
+  constructor(private readonly sourceCode: string) {
+    this.preprocessSourceCode()
   }
 
   scan() {
@@ -88,20 +90,20 @@ export class Scanner {
           this.number()
           break
         }
-        throw new Error('Not implemented yet')
+        throw new Error('Invalid Token')
     }
   }
 
   get peek(): string {
-    return this.source[this.current]
+    return this.scanningCode[this.current]
   }
 
   get peekNext(): string {
-    return this.source[this.current + 1]
+    return this.scanningCode[this.current + 1]
   }
 
   get isAtEnd(): boolean {
-    return this.current >= this.source.length
+    return this.current >= this.scanningCode.length
   }
 
   get currentToken(): Token {
@@ -109,7 +111,7 @@ export class Scanner {
   }
 
   get lexeme() {
-    return this.source.substring(this.start, this.current)
+    return this.scanningCode.substring(this.start, this.current)
   }
 
   get isCurrentNumber() {
@@ -149,8 +151,8 @@ export class Scanner {
     this.tokens.push(
       new Token({
         lexeme: '\0',
-        end: this.source.length,
-        start: this.source.length,
+        end: this.scanningCode.length,
+        start: this.scanningCode.length,
         line: this.line,
         type: TokenType.EOF,
       })
@@ -165,12 +167,12 @@ export class Scanner {
     if (this.peekNext === ':') {
       this.addToken(
         TokenType.IDENTIFIER,
-        this.source.substring(this.start + 1, this.current)
+        this.scanningCode.substring(this.start + 1, this.current)
       )
     } else {
       this.addToken(
         TokenType.STRING,
-        this.source.substring(this.start + 1, this.current)
+        this.scanningCode.substring(this.start + 1, this.current)
       )
     }
   }
@@ -190,5 +192,11 @@ export class Scanner {
       this.advance()
       this.addToken(TokenType.COMMA)
     }
+  }
+
+  preprocessSourceCode() {
+    this.scanningCode = this.sourceCode
+      .replace(/{/g, ' { ')
+      .replace(/}/g, ' } ')
   }
 }

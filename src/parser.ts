@@ -20,10 +20,10 @@ export class Parser {
   }
 
   parse() {
-    this.tree = this.parseValue()
+    this.tree = this.parseExpression()
   }
 
-  private parseValue() {
+  private parseExpression() {
     if (this.match(TokenType.LEFT_BRACKET)) {
       return this.parseObject()
     } else if (this.match(TokenType.SQUARE_LEFT_BRACKET)) {
@@ -52,17 +52,29 @@ export class Parser {
     let left = new Identifier(this.currentToken.lexeme)
     this.advance()
 
+    this.currentToken
     if (this.match(TokenType.COLON)) {
-      const right = this.literal
+      const operator = this.previous
+      const right = this.rightExpr
       this.advance()
       return new BinaryExpression(
         left,
-        this.previous as Token<TokenType.COLON>,
+        operator as Token<TokenType.COLON>,
         right
       )
     }
 
     throw new Error('Invalid BNRY')
+  }
+
+  private get rightExpr() {
+    const token = this.currentToken
+
+    if (this.match(TokenType.LEFT_BRACKET)) {
+      return this.parseObject()
+    } else {
+      return this.literal
+    }
   }
 
   private get literal() {
