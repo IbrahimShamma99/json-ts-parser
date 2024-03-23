@@ -25,7 +25,6 @@ describe('JSON Scanner Tests', () => {
   it('should parse Inner objects', () => {
     const sourceObject =
       '{"name": "John Doe", "figure": {"label": "Figure", "enabled": false}, "approvalManager": "John Doe 2" }'
-
     const scanner = new Scanner(sourceObject)
     scanner.scan()
     const parser = new Parser(scanner.tokens)

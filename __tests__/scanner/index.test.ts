@@ -18,4 +18,16 @@ describe('JSON Scanner Tests', () => {
 
     expect(scanner.tokens).toHaveLength(6)
   })
+
+  it('should scan Array', () => {
+    const source = `[
+      {"name": "John Doe"},
+      {"name": "Someone else"}
+    ]`
+
+    const scanner = new Scanner(source)
+    scanner.scan()
+
+    expect(scanner.tokens).toHaveLength(14)
+  })
 })
