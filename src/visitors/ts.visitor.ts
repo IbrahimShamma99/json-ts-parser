@@ -9,8 +9,11 @@ import { Visitor } from './visitor'
 import { BinaryExpression } from '../expressions/binary.expression'
 
 export class TSVisitor extends Visitor<string> {
-  public execute(json: ObjectExpression | ArrayExpression): string {
-    return `interface ${json.accept(this)}`
+  public execute(
+    json: ObjectExpression | ArrayExpression,
+    interfaceName: string
+  ): string {
+    return `type ${interfaceName} = ${json.accept(this)}`
   }
 
   public visitNumericLiteralExpr(expr: NumericLiteral): string {
@@ -34,11 +37,14 @@ export class TSVisitor extends Visitor<string> {
   }
 
   public visitObjectExpr(expr: ObjectExpression): string {
-    return `{${expr.exprs.map((e) => e.accept(this)).join(', ')}}`
+    return `{ ${expr.exprs.map((e) => e.accept(this)).join(', ')} }`
   }
 
   public visitArrayExpr(expr: ArrayExpression): string {
-    return `visitArrayExpr(${expr})`
+    const types = [...new Set(expr.exprs.map((e) => e.accept(this)))].join(
+      ' | '
+    )
+    return `(${types})[]`
   }
 
   public visitBinaryExpr(expr: BinaryExpression): string {

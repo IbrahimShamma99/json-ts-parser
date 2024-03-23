@@ -1,6 +1,16 @@
 import { Scanner, Parser } from '../../src'
 
 describe('JSON Scanner Tests', () => {
+  it('should parse a empty object', () => {
+    const source = '{}'
+    const scanner = new Scanner(source)
+    scanner.scan()
+    const parser = new Parser(scanner.tokens)
+    parser.parse()
+    expect(parser.tree.variant).toBe('object')
+    expect(parser.tree.exprs.length).toBe(0)
+  })
+
   it('should parse a simple JSON', () => {
     const source = '{"name": "John Doe"}'
     const scanner = new Scanner(source)
@@ -31,6 +41,41 @@ describe('JSON Scanner Tests', () => {
     parser.parse()
     expect(parser.tree.variant).toBe('object')
     expect(parser.tree.exprs.length).toBe(3)
-    expect(parser.tree.exprs[1])
+  })
+
+  it('should parse Array of numbers', () => {
+    const source = `[
+      5 , 4 , 8
+    ]`
+    const scanner = new Scanner(source)
+    scanner.scan()
+    const parser = new Parser(scanner.tokens)
+    parser.parse()
+    expect(parser.tree.variant).toBe('array')
+    expect(parser.tree.exprs.length).toBe(3)
+  })
+
+  it('should parse Array of numbers and strings', () => {
+    const source = `[
+      5 , "username"
+    ]`
+    const scanner = new Scanner(source)
+    scanner.scan()
+    const parser = new Parser(scanner.tokens)
+    parser.parse()
+    expect(parser.tree.variant).toBe('array')
+    expect(parser.tree.exprs.length).toBe(2)
+  })
+
+  it('should parse Array of numbers, strings & objects', () => {
+    const source = `[
+      5 , "username" , {}
+    ]`
+    const scanner = new Scanner(source)
+    scanner.scan()
+    const parser = new Parser(scanner.tokens)
+    parser.parse()
+    expect(parser.tree.variant).toBe('array')
+    expect(parser.tree.exprs.length).toBe(3)
   })
 })

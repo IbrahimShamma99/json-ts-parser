@@ -27,19 +27,31 @@ export class Parser {
     if (this.match(TokenType.LEFT_BRACKET)) {
       return this.parseObject()
     } else if (this.match(TokenType.SQUARE_LEFT_BRACKET)) {
-      throw new Error('Not Implemented')
-      //return this.parseArray()
+      return this.parseArray()
     } else {
       throw new Error('Invalid JSON')
     }
   }
 
-  private parseArray() {}
+  private parseArray() {
+    const array = new ArrayExpression()
+
+    do {
+      const rightExpr = this.rightExpr
+      this.advance()
+      array.exprs.push(rightExpr)
+    } while (this.match(TokenType.COMMA))
+
+    return array
+  }
 
   private parseObject() {
     const object = new ObjectExpression()
 
-    this.currentToken
+    if (this.currentToken.type !== TokenType.IDENTIFIER) {
+      return object
+    }
+
     do {
       const bnry = this.parseBnryExpr()
       object.exprs.push(bnry)
@@ -68,10 +80,10 @@ export class Parser {
   }
 
   private get rightExpr() {
-    const token = this.currentToken
-
     if (this.match(TokenType.LEFT_BRACKET)) {
       return this.parseObject()
+    } else if (this.match(TokenType.SQUARE_LEFT_BRACKET)) {
+      return this.parseArray()
     } else {
       return this.literal
     }

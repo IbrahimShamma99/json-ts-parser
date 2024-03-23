@@ -10,7 +10,7 @@ if (args.length && false) {
   scanner.scan()
   const parser = new Parser(scanner.tokens)
   parser.parse()
-  const inferredType = new TSVisitor().execute(parser.tree)
+  const inferredType = new TSVisitor().execute(parser.tree, 'TypeName')
   console.log(inferredType)
 }
 
