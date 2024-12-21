@@ -1,6 +1,6 @@
 # JSON Parsing toolchain
 
-## Fun Project still in the creation aims to create type inference from JSON to Typescript interfaces.
+## Fun Project in the creation aims to create JSON AST for formatting, predict how TS interface would look like and much more
 
 Inspired by [TS Service](https://github.com/unlight/typescript-service)
 
