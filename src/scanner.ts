@@ -31,10 +31,16 @@ export class Scanner {
       case '\n':
         this.line++
         break
+
+      case ',':
+        this.addToken(TokenType.COMMA, ',')
+        break
+
       case 't':
         while (this.isCurrentChar) {
           this.advance()
         }
+
         if (this.lexeme === 'true') {
           this.addToken(TokenType.TRUE)
         } else {
@@ -55,6 +61,7 @@ export class Scanner {
         while (this.isCurrentChar) {
           this.advance()
         }
+
         if (this.lexeme === 'false') {
           this.addToken(TokenType.FALSE)
         } else {
@@ -76,9 +83,6 @@ export class Scanner {
       case ':':
         this.addToken(TokenType.COLON, ':')
         break
-      case ',':
-        this.addToken(TokenType.COMMA, ',')
-        break
       case '.':
         this.addToken(TokenType.DOT, '.')
         break
@@ -90,7 +94,8 @@ export class Scanner {
           this.number()
           break
         }
-        throw new Error('Invalid Token')
+
+        throw new Error(`Invalid Token: ${this.peek}`)
     }
   }
 
@@ -189,7 +194,7 @@ export class Scanner {
     this.addToken(TokenType.NUMBER)
     if (this.peek === ',') {
       this.start = this.current
-      this.advance()
+      // this.advance()
       this.addToken(TokenType.COMMA)
     }
   }

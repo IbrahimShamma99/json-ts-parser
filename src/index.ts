@@ -1,6 +1,7 @@
 import { Scanner } from './scanner'
 import { Parser } from './parser'
 import { TSVisitor } from './visitors/ts.visitor'
+import { FormatterVisitor } from './visitors/formatter.visitor'
 
 const args = process.argv.slice(2)
 
@@ -14,4 +15,4 @@ if (args.length && false) {
   console.log(inferredType)
 }
 
-export { Scanner, Parser, TSVisitor }
+export { Scanner, Parser, TSVisitor, FormatterVisitor }
