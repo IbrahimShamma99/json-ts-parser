@@ -1,4 +1,4 @@
-# JSON into Typescript interface Parser
+# JSON Parsing toolchain
 
 ## Fun Project still in the creation aims to create type inference from JSON to Typescript interfaces.
 
@@ -23,6 +23,8 @@ const type = new TSVisitor().execute(parser.tree)
 
 ## TODO
 
+### Typescript Visitor
+
 - [x] Create a scanner
 - [x] Create a parser
 - [x] Create a visitor
@@ -30,4 +32,7 @@ const type = new TSVisitor().execute(parser.tree)
 - [x] Scan arrays
 - [x] Parse arrays
 - [x] Accept Arrays
-- [ ] Create a CLI
+
+### JSON Formatter
+
+- [ ] Visitor Setup
