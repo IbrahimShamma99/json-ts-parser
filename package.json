@@ -7,6 +7,7 @@
   "scripts": {
     "format": "npx prettier --write .",
     "prepublish": "tsc",
+    "build": "pnpm prepublish",
     "prepare": "husky install",
     "test": "jest"
   },
