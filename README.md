@@ -1,6 +1,6 @@
 # JSON Parsing toolchain
 
-## Fun Project in the creation aims to create JSON AST for formatting, predict how TS interface would look like and much more
+## Fun Project in the creation aims for generating JSON AST for formatting and infer TS interface out of AST
 
 Inspired by [TS Service](https://github.com/unlight/typescript-service)
 
